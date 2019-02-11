@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Permitted - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'permit/style.css' %}">
+
+</head>
+<body>
+
+{% if user.is_authenticated %}
+<form>
+<div class="container-fluid text-center">
+    <h3>{{ person.username }}</h3>
+    <a href="/permit/profile/kumar">
+  <br><br><br><br><br><br><h3>Please Logout First</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </a>
+</div>
+</form>
+
+{%  else %}
+<br>
+
+<div class="jumbotron text-center">
+  <h1>Permitted</h1>
+  <p>The Place Where You Fully Permit !!!</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+        <br><br>
+    </div>
+    <div class="col-sm-4">
+      <p style="font-size:30px ; color:black">Welcome To Permitted</p>
+
+        {% if form.errors %}
+            <p class="error"> Sorry, Thats not a valid username or password</p>
+        {% endif %}
+        <form class="form-horizontal"  role="form" action="" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" value="" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" value="" required>
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-success">Log In</button>
+        </form>
+        <br><br>
+        <a href="#">
+            <p style="font-size:15px ; color:blue">Forget Password</p>
+        </a>
+        <a href="/permit/register">
+            <p style="font-size:15px ; color:blue">Create new user</p>
+        </a>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+  </div>
+</div>
+
+{% endif %}
+</body>
+</html>

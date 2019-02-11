@@ -1,0 +1,20 @@
+
+body{
+    background: white url("images/5.jpg")
+}
+
+.navbar{
+    border-radius: 0;
+}
+
+.navbar-brand{
+    font-family: 'Satisfy',cursive;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:valid {
+  border: 2px solid black;
+}

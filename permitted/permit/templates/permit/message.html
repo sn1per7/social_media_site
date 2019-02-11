@@ -1,0 +1,54 @@
+{% extends 'permit/topnavbar.html' %}
+
+{% block body%}
+
+<title>Permitted - Messages</title>
+
+{% if user.is_authenticated %}
+
+<div class = "col-sm-4">
+
+</div>
+
+<div class="col-sm-7">
+       <div class="panel panel-default" id="msgList">
+           <ul type="textarea" id="message"  >
+               {% for obj in chatbox %}
+                    {% if obj.sender == current_user %}
+                        <li class="text-right list-group-item">{{ obj }}</li>
+                    {% else %}
+                        <li class="text-left list-group-item">{{ obj }}</li>
+                    {% endif %}
+               {% empty %}
+                <li class="text-left list-group-itm">No Messages Yet !!!</li>
+               {% endfor %}
+               <script>
+                   var chatList = document.getElementById('msgList');
+                   chatList.scrollTop = chatList.scrollHeight;
+               </script>
+           </ul>
+        </div>
+        <br>
+    <form id="chatbox"  role="form" action="" method="post">{% csrf_token %}
+        <div class="row">
+            <div class="col-sm-5 ">
+                <!--<input type="text" id="sen" placeholder="Sender username" name="sender" ><br>-->
+                <!--<input type="text" id="rec" placeholder="Receiver username" name="receiver" ><br>-->
+                <input type="text" id="msg" placeholder="Your message..." name="message" ><br>
+                <button type="submit" class="btn btn-success">Send</button>
+            </div>
+        </div>
+     </form>
+</div>
+{% else %}
+
+<div class="container-fluid text-center">
+  <a href="/permit">
+  <br><br><br><br><br><br><h3>Please Login First</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </a>
+</div>
+
+{% endif %}
+
+
+{% endblock %}
